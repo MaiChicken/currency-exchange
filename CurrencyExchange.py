@@ -34,11 +34,13 @@ for c in data["rates"]:
     image = ImageTk.PhotoImage(image)
     flag[c] = image
 
+exchangeIcon = PhotoImage(file = "images\\exchange.png")
+
 Label(win, text = "Country").grid(row = 0, column = 0)
 Label(win, text = "Country").grid(row = 0, column = 4)
 Label(win, text="Last update : "+data["date"]).grid(row = 2)
-Label(win, image=flag["AUD"]).grid(row=1, column=0)
-Label(win, image=flag["AUD"]).grid(row=1, column=4)
+Label(win, image=flag["AUD"]).grid(row=1, column=0, padx = 10)
+Label(win, image=flag["AUD"]).grid(row=1, column=4, padx = 10)
 
 def country1_option_click(country):
     Label(win, image=flag[country]).grid(row=1, column=0)
@@ -54,7 +56,7 @@ country1_option.grid(row = 1, column = 1)
 
 #firs country entry box
 country1_entry = Entry(win)
-country1_entry.grid(row = 1, column = 2)
+country1_entry.grid(row = 1, column = 2, padx = 10)
 
 #second country option menu
 var_country2 = StringVar()
@@ -64,7 +66,7 @@ country2_option.grid(row = 1, column = 5)
 
 #second country entry box
 country2_entry = Entry(win)
-country2_entry.grid(row = 1, column = 6)
+country2_entry.grid(row = 1, column = 6, padx = 10)
 
 #calculation
 def exchange():
@@ -78,6 +80,6 @@ def exchange():
     country2_entry.delete(0, END)
     country2_entry.insert(0, (amount/country1_rate)*country2_rate)
 
-Button(win, text = "click", command = exchange).grid(row = 1, column = 3)
+Button(win, text = "Exchange", command = exchange, image = exchangeIcon, compound = LEFT).grid(row = 1, column = 3, padx = 10)
 
 win.mainloop()
